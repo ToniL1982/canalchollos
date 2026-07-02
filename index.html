@@ -20,13 +20,17 @@
       margin: auto;
     }
 
+    /* LOGO CONTROLADO */
     .logo {
-      width: 140px;
-      height: 140px;
-      border-radius: 25px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
+      border-radius: 24px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       margin-bottom: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h1 {
@@ -64,6 +68,19 @@
       color: #94a3b8;
     }
 
+    .card {
+      margin-top: 30px;
+      background: #111827;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #fbbf24;
+    }
+
     footer {
       margin-top: 50px;
       font-size: 12px;
@@ -77,26 +94,39 @@
   <div class="container">
 
     <!-- LOGO -->
-    <<img src="./logo.jpeg?v=2" alt="logo">>
+    <img class="logo" src="./logo.jpeg?v=3" alt="Canal Chollos">
 
     <h1>🔥 Canal Chollos</h1>
 
     <p>
       Los mejores chollos diarios de España.<br>
-      Ofertas limitadas, actualizadas cada día.
+      Ofertas limitadas actualizadas cada día.
     </p>
 
     <!-- BOTÓN TELEGRAM -->
-    <a class="btn" href="https://t.me/s/canalcholloses" target="_blank">
+    <a class="btn" href="https://t.me/canalcholloses" target="_blank">
       🚀 Entrar al canal de Telegram
     </a>
 
     <div class="secondary">
-      🔔 Acceso gratuito • Sin spam • Ofertas reales
+      🔔 Gratis • Sin spam • Solo chollos reales
+    </div>
+
+    <!-- MINI PREVIEW -->
+    <div class="card">
+      <h3>🔥 Últimos chollos</h3>
+
+      <p>📱 Smartphone rebajado -50% <br><small>hace 2 min</small></p>
+      <hr style="border:0; border-top:1px solid #334155;">
+
+      <p>🎧 Auriculares premium en oferta <br><small>hace 10 min</small></p>
+      <hr style="border:0; border-top:1px solid #334155;">
+
+      <p>💻 Ofertas flash Amazon <br><small>hace 25 min</small></p>
     </div>
 
     <footer>
-      🚧 Web en construcción — versión beta
+      🚧 Web en construcción — CanalChollos.es
     </footer>
 
   </div>
