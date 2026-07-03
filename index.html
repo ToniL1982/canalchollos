@@ -1,122 +1,744 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canal Chollos España</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CanalChollosES — Ofertas y Reviews de Amazon España</title>
+<meta name="description" content="Las mejores ofertas de Amazon España con descuentos verificados. Reviews honestas y chollos actualizados cada hora.">
+<meta property="og:title" content="CanalChollosES — Ofertas Amazon España">
+<meta property="og:description" content="Chollos verificados y reviews honestas de Amazon España.">
+<meta name="theme-color" content="#0D0D0D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ─────────────────────────────────────────────── */
+:root {
+  --bg:          #0D0D0D;
+  --bg-card:     #181818;
+  --bg-hover:    #242424;
+  --gold:        #E8C547;
+  --gold-dim:    #9A8430;
+  --red:         #E63946;
+  --text:        #F0EDE6;
+  --text-2:      #A09C95;
+  --text-3:      #6B7280;
+  --border:      #2A2A2A;
+  --border-2:    #383838;
+  --r:           10px;
+  --serif:       'DM Serif Display', Georgia, serif;
+  --sans:        'DM Sans', system-ui, sans-serif;
+  --mono:        'DM Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+input { font: inherit; }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      text-align: center;
-    }
+/* ── Layout ─────────────────────────────────────────────── */
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
 
-    .container {
-      padding: 70px 20px;
-      max-width: 600px;
-      margin: auto;
-    }
+/* ── Header ─────────────────────────────────────────────── */
+.site-header {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(13,13,13,.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.header-row {
+  display: flex; align-items: center; gap: 16px;
+  height: 56px;
+}
+.logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.logo span { color: var(--gold); }
 
-    /* LOGO CONTROLADO */
-    .logo {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 24px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      margin-bottom: 20px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+.search {
+  flex: 1;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 14px; height: 38px;
+  transition: border-color .15s;
+}
+.search:focus-within { border-color: var(--gold); }
+.search svg { color: var(--text-3); flex-shrink: 0; }
+.search input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--text); font-size: 14px;
+}
+.search input::placeholder { color: var(--text-3); }
 
-    h1 {
-      font-size: 38px;
-      margin: 10px 0;
-    }
+.nav { display: flex; gap: 2px; flex-shrink: 0; }
+.nav-btn {
+  padding: 7px 14px; border-radius: 7px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text-3);
+  transition: all .15s;
+}
+.nav-btn:hover { color: var(--text); background: var(--bg-card); }
+.nav-btn.on { color: var(--text); background: var(--bg-hover); }
 
-    p {
-      font-size: 18px;
-      color: #cbd5e1;
-      margin-bottom: 30px;
-    }
+/* ── Stats strip ─────────────────────────────────────────── */
+.stats-strip {
+  display: flex; align-items: center; gap: 0;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto; scrollbar-width: none;
+}
+.stats-strip::-webkit-scrollbar { display: none; }
+.stat {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px;
+  border-right: 1px solid var(--border);
+  white-space: nowrap; flex-shrink: 0;
+  font-size: 12px; color: var(--text-3);
+}
+.stat-val {
+  font-family: var(--mono);
+  font-size: 15px; font-weight: 500;
+  color: var(--gold);
+}
+.stat-upd { margin-left: auto; padding-right: 0; border-right: none; }
 
-    .btn {
-      display: inline-block;
-      padding: 16px 28px;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 12px;
-      font-size: 18px;
-      transition: 0.2s;
-      box-shadow: 0 8px 20px rgba(34,197,94,0.3);
-    }
+/* ── Page grid ───────────────────────────────────────────── */
+.page-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 96px);
+}
 
-    .btn:hover {
-      background: #16a34a;
-      transform: scale(1.05);
-    }
+/* ── Sidebar ─────────────────────────────────────────────── */
+.sidebar {
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  position: sticky; top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto; scrollbar-width: thin;
+}
+.sidebar-label {
+  font-family: var(--mono);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-3);
+  padding: 0 16px 12px;
+}
+.cat-btn {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 9px 16px;
+  font-size: 13px; color: var(--text-2);
+  transition: all .12s; text-align: left;
+  border-left: 2px solid transparent;
+}
+.cat-btn:hover { color: var(--text); background: var(--bg-card); }
+.cat-btn.on {
+  color: var(--text); background: var(--bg-card);
+  border-left-color: var(--gold);
+}
+.cat-emoji { width: 18px; text-align: center; font-size: 14px; }
+.cat-n {
+  margin-left: auto;
+  font-family: var(--mono); font-size: 11px; color: var(--text-3);
+}
 
-    .secondary {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #94a3b8;
-    }
+/* ── Content area ────────────────────────────────────────── */
+.content { padding: 24px; }
 
-    .card {
-      margin-top: 30px;
-      background: #111827;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: left;
-    }
+/* ── Toolbar ─────────────────────────────────────────────── */
+.toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.toolbar-info {
+  font-family: var(--mono); font-size: 12px; color: var(--text-3);
+}
+.toolbar-info strong { color: var(--text-2); }
+.sort {
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-2); font-size: 13px;
+  padding: 6px 10px; border-radius: 6px; outline: none;
+  cursor: pointer;
+}
 
-    .card h3 {
-      margin-top: 0;
-      color: #fbbf24;
-    }
+/* ── Offer grid ──────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
 
-    footer {
-      margin-top: 50px;
-      font-size: 12px;
-      color: #64748b;
-    }
-  </style>
+/* ── Offer card ──────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  transition: border-color .15s, transform .18s, box-shadow .18s;
+}
+.card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+.card-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  background: #111;
+  overflow: hidden;
+}
+.card-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .3s;
+}
+.card:hover .card-thumb img { transform: scale(1.05); }
+.card-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; color: var(--text-3); background: #111;
+}
+/* Badge de descuento — único uso del rojo */
+.disc-badge {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--mono); font-weight: 500; font-size: 12px;
+  padding: 3px 7px; border-radius: 5px;
+  letter-spacing: .02em;
+}
+/* Badge "review" */
+.review-badge {
+  position: absolute; top: 8px; left: 8px;
+  background: rgba(13,13,13,.85);
+  color: var(--gold);
+  font-family: var(--mono); font-size: 10px;
+  padding: 2px 6px; border-radius: 4px;
+  border: 1px solid var(--gold-dim);
+  letter-spacing: .06em; text-transform: uppercase;
+}
+
+.card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.card-cat { font-size: 10px; font-family: var(--mono); color: var(--text-3); letter-spacing: .06em; text-transform: uppercase; }
+.card-title {
+  font-size: 13px; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  flex: 1;
+}
+.card-prices { display: flex; align-items: baseline; gap: 8px; margin-top: 6px; }
+/* Firma: precio actual como cotización bursátil */
+.p-now {
+  font-family: var(--mono); font-size: 19px; font-weight: 500;
+  color: var(--gold);
+  letter-spacing: -.02em;
+}
+.p-orig {
+  font-family: var(--mono); font-size: 12px; color: var(--text-3);
+  position: relative;
+}
+.p-orig::after {
+  content: ''; position: absolute; left: 0; top: 50%;
+  width: 0; height: 1px; background: var(--red);
+  transition: width .3s;
+}
+.card:hover .p-orig::after { width: 100%; }
+
+.card-foot {
+  padding: 9px 12px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-time { font-family: var(--mono); font-size: 10px; color: var(--text-3); }
+.card-go { font-size: 12px; font-weight: 500; color: var(--gold); }
+
+/* ── Paginación ──────────────────────────────────────────── */
+.pag { display: flex; gap: 6px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+.pag-btn {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; font-family: var(--mono); font-size: 12px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-3); transition: all .12s;
+}
+.pag-btn:hover, .pag-btn.on { background: var(--gold); border-color: var(--gold); color: #0D0D0D; }
+
+/* ── Reviews list ────────────────────────────────────────── */
+.rev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.rev-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden; cursor: pointer;
+  transition: border-color .15s, transform .18s;
+}
+.rev-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+.rev-thumb { aspect-ratio: 16/9; background: #111; overflow: hidden; }
+.rev-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.rev-thumb-empty {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; color: var(--text-3);
+}
+.rev-body { padding: 16px; }
+.rev-cat {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.rev-title {
+  font-family: var(--serif); font-size: 18px; line-height: 1.25;
+  margin-bottom: 8px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.rev-desc {
+  font-size: 13px; color: var(--text-2); line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.rev-foot {
+  padding: 10px 16px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rev-date { font-family: var(--mono); font-size: 10px; color: var(--text-3); }
+.rev-read { font-size: 12px; font-weight: 500; color: var(--gold); }
+
+/* ── Review detail ───────────────────────────────────────── */
+#review-view { display: none; }
+.rv-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 12px; color: var(--text-3);
+  margin-bottom: 36px; transition: color .15s;
+}
+.rv-back:hover { color: var(--text); }
+.rv-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 48px; align-items: start;
+}
+.rv-cat {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+}
+.rv-title {
+  font-family: var(--serif); font-size: 36px; line-height: 1.12;
+  margin-bottom: 16px;
+}
+.rv-lead { color: var(--text-2); font-size: 16px; line-height: 1.65; }
+.rv-sticky {
+  position: sticky; top: 80px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.rv-img { aspect-ratio: 1; border-radius: 7px; overflow: hidden; background: #111; }
+.rv-img img { width: 100%; height: 100%; object-fit: cover; }
+.rv-price-now {
+  font-family: var(--mono); font-size: 32px; font-weight: 500;
+  color: var(--gold); letter-spacing: -.03em;
+}
+.rv-price-orig { font-family: var(--mono); font-size: 13px; color: var(--text-3); }
+.rv-disc {
+  display: inline-block;
+  background: var(--red); color: #fff;
+  font-family: var(--mono); font-size: 12px;
+  padding: 3px 8px; border-radius: 5px;
+  align-self: flex-start;
+}
+.btn-amazon {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--gold); color: #0D0D0D;
+  font-family: var(--sans); font-weight: 600; font-size: 14px;
+  padding: 13px; border-radius: 8px;
+  transition: opacity .15s, transform .15s;
+}
+.btn-amazon:hover { opacity: .9; transform: translateY(-1px); }
+
+/* ── Review content ──────────────────────────────────────── */
+.rv-content { margin-top: 40px; }
+.rv-content h2 {
+  font-family: var(--serif); font-size: 24px;
+  margin: 40px 0 14px; color: var(--text);
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.rv-content p { margin-bottom: 16px; color: var(--text-2); line-height: 1.75; }
+.rv-content ul, .rv-content ol {
+  padding-left: 18px; margin-bottom: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rv-content li { color: var(--text-2); line-height: 1.65; }
+.rv-content strong { color: var(--text); font-weight: 600; }
+.rv-content a { color: var(--gold); text-decoration: underline; }
+.rv-buy-bottom {
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);
+}
+
+/* ── States ──────────────────────────────────────────────── */
+.loading {
+  grid-column: 1/-1; display: flex; flex-direction: column;
+  align-items: center; gap: 14px; padding: 80px 0; color: var(--text-3);
+  font-family: var(--mono); font-size: 13px;
+}
+.spin {
+  width: 28px; height: 28px;
+  border: 2px solid var(--border-2); border-top-color: var(--gold);
+  border-radius: 50%; animation: spin .6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty {
+  grid-column: 1/-1; text-align: center; padding: 80px 0;
+  color: var(--text-3); font-size: 14px;
+}
+.empty-ico { font-size: 44px; margin-bottom: 14px; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .page-grid { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 12px 0; display: flex; flex-direction: row; overflow-x: auto; gap: 0; }
+  .sidebar-label { display: none; }
+  .cat-btn { border-left: none; border-bottom: 2px solid transparent; padding: 8px 14px; white-space: nowrap; }
+  .cat-btn.on { border-bottom-color: var(--gold); background: none; }
+  .cat-n { display: none; }
+  .rv-layout { grid-template-columns: 1fr; }
+  .rv-sticky { position: static; }
+}
+@media (max-width: 600px) {
+  .nav { display: none; }
+  .rv-title { font-size: 26px; }
+  .stats-strip { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .p-orig::after, .card-thumb img { transition: none; }
+}
+</style>
 </head>
-
 <body>
 
-  <div class="container">
+<header class="site-header">
+  <div class="wrap header-row">
+    <div class="logo">Canal<span>Chollos</span>ES</div>
+    <div class="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="q" type="search" placeholder="Buscar ofertas, productos, categorías…" autocomplete="off">
+    </div>
+    <nav class="nav">
+      <button class="nav-btn on" onclick="tab('ofertas')">Ofertas</button>
+      <button class="nav-btn" onclick="tab('reviews')">Reviews</button>
+    </nav>
+  </div>
+</header>
 
-    <!-- LOGO -->
-    <img class="logo" src="./logo.jpeg?v=3" alt="Canal Chollos">
+<div class="stats-strip wrap" id="stats"></div>
 
-    <h1>🔥 Canal Chollos</h1>
+<div class="page-grid wrap">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-label">Categorías</div>
+    <button class="cat-btn on" onclick="cat('')" data-cat="">
+      <span class="cat-emoji">🔥</span>Todas
+      <span class="cat-n" id="n-all">—</span>
+    </button>
+  </aside>
 
-    <p>
-      Los mejores chollos diarios de España.<br>
-      Ofertas limitadas actualizadas cada día.
-    </p>
-
-    <!-- BOTÓN TELEGRAM -->
-    <a class="btn" href="https://t.me/s/canalcholloses" target="_blank">
-      🚀 Entrar al canal de Telegram
-    </a>
-
-    <div class="secondary">
-      🔔 Gratis • Sin spam • Solo chollos reales de Amazon
+  <div class="content">
+    <!-- Ofertas -->
+    <div id="pane-ofertas">
+      <div class="toolbar">
+        <span class="toolbar-info" id="info">…</span>
+        <select class="sort" id="sort" onchange="render()">
+          <option value="new">Más recientes</option>
+          <option value="dto">Mayor descuento</option>
+          <option value="asc">Precio ↑</option>
+        </select>
+      </div>
+      <div class="grid" id="grid"><div class="loading"><div class="spin"></div>Cargando chollos…</div></div>
+      <div class="pag" id="pag"></div>
     </div>
 
-    <footer>
-      🚧 Web en construcción — CanalChollos.es
-    </footer>
+    <!-- Reviews list -->
+    <div id="pane-reviews" style="display:none">
+      <div class="rev-grid" id="rev-grid"><div class="loading"><div class="spin"></div>Cargando reviews…</div></div>
+    </div>
 
+    <!-- Review detail -->
+    <div id="review-view"></div>
   </div>
+</div>
 
+<script>
+// ── Config ────────────────────────────────────────────────────────────────────
+const PER = 24;
+const DATA_URL = './data.json';
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let D = null; // datos completos
+let S = { tab:'ofertas', cat:'', q:'', page:1 };
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+async function boot() {
+  try {
+    const r = await fetch(DATA_URL + '?v=' + Date.now());
+    if (!r.ok) throw new Error(r.status);
+    D = await r.json();
+  } catch(e) {
+    document.getElementById('grid').innerHTML =
+      '<div class="empty"><div class="empty-ico">⚠️</div>No se pudo cargar data.json.<br>Ejecuta: <code>python export_json.py</code></div>';
+    return;
+  }
+  renderStats();
+  renderSidebar();
+  // Busqueda con debounce
+  let t;
+  document.getElementById('q').addEventListener('input', e => {
+    clearTimeout(t);
+    t = setTimeout(() => { S.q = e.target.value.trim().toLowerCase(); S.page = 1; render(); }, 280);
+  });
+  // Hash routing
+  if (location.hash.startsWith('#r/')) showReview(location.hash.slice(3));
+  else render();
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const fmt = n => Number(n).toLocaleString('es-ES', {minimumFractionDigits:2, maximumFractionDigits:2}) + '€';
+
+function ago(s) {
+  if (!s) return '';
+  const d = Math.floor((Date.now() - new Date(s.includes('T')?s:s+'Z').getTime()) / 1e3);
+  if (d < 60) return 'ahora';
+  if (d < 3600) return `hace ${~~(d/60)}m`;
+  if (d < 86400) return `hace ${~~(d/3600)}h`;
+  return `hace ${~~(d/86400)}d`;
+}
+
+const CAT_EMOJI = {moda:'👗',mascotas:'🐾',tecnologia:'💻',gaming:'🎮',hogar:'🏠',cocina:'🍳',smarthome:'💡',fotovideo:'📷',audio:'🎧',juguetes:'👶',belleza:'💄',deporte:'🏋️',coche:'🚗',bricolaje:'🔧',libros:'📚',viajes:'🧳',flash:'⚡'};
+const emoji = s => CAT_EMOJI[s] || '🛒';
+
+function md2html(s) {
+  if (!s) return '';
+  return s
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="nofollow sponsored">$1</a>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g,m=>'<ul>'+m+'</ul>')
+    .split('\n\n').map(p=>p.startsWith('<')?p:`<p>${p}</p>`).join('');
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+function renderStats() {
+  const s = D.stats || {};
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><span>Ofertas</span><span class="stat-val">${s.total_publicadas||0}</span></div>
+    <div class="stat"><span>Hoy</span><span class="stat-val">${s.publicadas_hoy||0}</span></div>
+    <div class="stat"><span>Mejor dto</span><span class="stat-val">-${s.mejor_descuento||0}%</span></div>
+    <div class="stat"><span>Reviews</span><span class="stat-val">${s.total_reviews||0}</span></div>
+    <div class="stat stat-upd"><span>Actualizado ${ago(D.generado_at)}</span></div>
+  `;
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+function renderSidebar() {
+  const sb = document.getElementById('sidebar');
+  const total = (D.ofertas||[]).length;
+  document.getElementById('n-all').textContent = total;
+  (D.categorias||[]).forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'cat-btn'; b.dataset.cat = c.slug;
+    b.onclick = () => cat(c.slug);
+    const name = (c.nombre||'').replace(/^[^\s]+\s/,'');
+    b.innerHTML = `<span class="cat-emoji">${emoji(c.slug)}</span>${name}<span class="cat-n">${c.total}</span>`;
+    sb.appendChild(b);
+  });
+}
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+function tab(t) {
+  S.tab = t;
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('on',['ofertas','reviews'][i]===t));
+  document.getElementById('pane-ofertas').style.display = t==='ofertas'?'':'none';
+  document.getElementById('pane-reviews').style.display = t==='reviews'?'':'none';
+  document.getElementById('review-view').style.display = 'none';
+  if (t==='reviews') renderRevList();
+}
+
+// ── Category filter ───────────────────────────────────────────────────────────
+function cat(slug) {
+  S.cat = slug; S.page = 1;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('on', b.dataset.cat===slug));
+  render();
+}
+
+// ── Offers render ─────────────────────────────────────────────────────────────
+function filtered() {
+  let list = D.ofertas || [];
+  if (S.cat) list = list.filter(o=>o.categoria===S.cat);
+  if (S.q)   list = list.filter(o=>(o.titulo||'').toLowerCase().includes(S.q));
+  const sort = document.getElementById('sort').value;
+  if (sort==='dto') return [...list].sort((a,b)=>b.descuento-a.descuento);
+  if (sort==='asc') return [...list].sort((a,b)=>a.precio-b.precio);
+  return list;
+}
+
+function render() {
+  if (S.tab !== 'ofertas') return;
+  document.getElementById('review-view').style.display = 'none';
+  document.getElementById('pane-ofertas').style.display = '';
+
+  const list = filtered();
+  const total = list.length;
+  const pages = Math.max(1, Math.ceil(total/PER));
+  if (S.page > pages) S.page = 1;
+
+  document.getElementById('info').innerHTML =
+    `<strong>${total}</strong> oferta${total!==1?'s':''}${S.cat?' en esta categoría':''}`;
+
+  const slice = list.slice((S.page-1)*PER, S.page*PER);
+  const grid = document.getElementById('grid');
+
+  if (!slice.length) {
+    grid.innerHTML = '<div class="empty"><div class="empty-ico">🔍</div>Sin resultados para esta búsqueda.</div>';
+    document.getElementById('pag').innerHTML = '';
+    return;
+  }
+
+  // Buscar si la oferta tiene review
+  const reviewSlugs = new Set((D.reviews||[]).map(r=>r.oferta_id||'').filter(Boolean));
+
+  grid.innerHTML = slice.map(o => {
+    const hasReview = reviewSlugs.has(o.id);
+    const img = o.imagen_url
+      ? `<img src="${o.imagen_url}" alt="${escHtml(o.titulo)}" loading="lazy">`
+      : `<div class="card-placeholder">${emoji(o.categoria)}</div>`;
+    const orig = o.precio_orig && o.precio_orig > o.precio
+      ? `<span class="p-orig">${fmt(o.precio_orig)}</span>` : '';
+    return `
+      <article class="card" onclick="window.open('${o.url_afiliado}','_blank','noopener')">
+        <div class="card-thumb">
+          ${img}
+          <div class="disc-badge">-${o.descuento}%</div>
+          ${hasReview ? '<div class="review-badge">review</div>' : ''}
+        </div>
+        <div class="card-body">
+          <div class="card-cat">${o.categoria_display||''}</div>
+          <div class="card-title">${escHtml(o.titulo||'')}</div>
+          <div class="card-prices">
+            <span class="p-now">${fmt(o.precio)}</span>${orig}
+          </div>
+        </div>
+        <div class="card-foot">
+          <span class="card-time">${ago(o.updated_at||o.created_at)}</span>
+          <span class="card-go">Ver oferta →</span>
+        </div>
+      </article>`;
+  }).join('');
+
+  // Pagination
+  const pag = document.getElementById('pag');
+  if (pages <= 1) { pag.innerHTML = ''; return; }
+  let h = '';
+  if (S.page > 1) h += `<button class="pag-btn" onclick="goPage(${S.page-1})">←</button>`;
+  for (let i=Math.max(1,S.page-2); i<=Math.min(pages,S.page+2); i++)
+    h += `<button class="pag-btn ${i===S.page?'on':''}" onclick="goPage(${i})">${i}</button>`;
+  if (S.page < pages) h += `<button class="pag-btn" onclick="goPage(${S.page+1})">→</button>`;
+  pag.innerHTML = h;
+}
+
+function goPage(n) { S.page=n; render(); scrollTo({top:0,behavior:'smooth'}); }
+
+// ── Reviews list ──────────────────────────────────────────────────────────────
+function renderRevList() {
+  const list = D.reviews || [];
+  const g = document.getElementById('rev-grid');
+  if (!list.length) {
+    g.innerHTML = '<div class="empty"><div class="empty-ico">📝</div>Aún no hay reviews publicadas.<br>Usa /review en Telegram para generar la primera.</div>';
+    return;
+  }
+  g.innerHTML = list.map(r => `
+    <article class="rev-card" onclick="showReview('${r.slug}')">
+      <div class="rev-thumb">
+        ${r.imagen_url ? `<img src="${r.imagen_url}" alt="${escHtml(r.titulo_seo||'')}" loading="lazy">` : `<div class="rev-thumb-empty">${emoji(r.categoria)}</div>`}
+      </div>
+      <div class="rev-body">
+        <div class="rev-cat">${r.categoria_display||'Review'}</div>
+        <div class="rev-title">${escHtml(r.titulo_seo||'')}</div>
+        <div class="rev-desc">${escHtml(r.meta_descripcion||'')}</div>
+      </div>
+      <div class="rev-foot">
+        <span class="rev-date">${ago(r.created_at)}</span>
+        <span class="rev-read">Leer análisis →</span>
+      </div>
+    </article>`).join('');
+}
+
+// ── Review detail ─────────────────────────────────────────────────────────────
+function showReview(slug) {
+  const r = (D.reviews||[]).find(r=>r.slug===slug);
+  if (!r) return;
+
+  location.hash = 'r/' + slug;
+  document.getElementById('pane-ofertas').style.display = 'none';
+  document.getElementById('pane-reviews').style.display = 'none';
+  const view = document.getElementById('review-view');
+  view.style.display = '';
+
+  const orig = r.precio_orig && r.precio_orig > r.precio
+    ? `<div class="rv-price-orig">Antes: ${fmt(r.precio_orig)}</div>` : '';
+
+  view.innerHTML = `
+    <button class="rv-back" onclick="backHome()">← Volver a ofertas</button>
+    <div class="rv-layout">
+      <div>
+        <div class="rv-cat">${r.categoria_display||'Review'}</div>
+        <h1 class="rv-title">${escHtml(r.titulo_seo||'')}</h1>
+        <p class="rv-lead">${escHtml(r.meta_descripcion||'')}</p>
+        <div class="rv-content">${md2html(r.contenido_markdown)}</div>
+        <div class="rv-buy-bottom">
+          <a class="btn-amazon" href="${r.url_afiliado||'#'}" target="_blank" rel="nofollow sponsored" style="min-width:260px">
+            🛒 Ver precio en Amazon
+          </a>
+        </div>
+      </div>
+      <aside class="rv-sticky">
+        ${r.imagen_url ? `<div class="rv-img"><img src="${r.imagen_url}" alt="${escHtml(r.titulo_seo||'')}"></div>` : ''}
+        <div class="rv-price-now">${fmt(r.precio||0)}</div>
+        ${orig}
+        <div class="rv-disc">-${r.descuento||0}% de descuento</div>
+        <a class="btn-amazon" href="${r.url_afiliado||'#'}" target="_blank" rel="nofollow sponsored">
+          🛒 Ver en Amazon
+        </a>
+      </aside>
+    </div>`;
+}
+
+function backHome() {
+  document.getElementById('review-view').style.display = 'none';
+  document.getElementById('pane-ofertas').style.display = '';
+  location.hash = '';
+}
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+boot();
+</script>
 </body>
 </html>
